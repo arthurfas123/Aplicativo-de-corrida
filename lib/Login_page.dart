@@ -116,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             SizedBox(
               height: MediaQuery.of(context).size.height,
-              child: Image.asset('assets/images/plano_de_fundo_login.png', fit: BoxFit.cover),
+              child: Image.asset('assets/images/alysson.jpeg', fit: BoxFit.cover),
             ),
             _body()
           ],
