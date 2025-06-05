@@ -1,6 +1,6 @@
 import 'package:aplicativo_de_corrida/Adicionar_corrida.dart';
 import 'package:flutter/material.dart';
-import 'App_controller.dart';
+import '../controllers/ThemeController.dart';
 import 'Home_page.dart';
 import 'Login_page.dart';
 

@@ -1,5 +1,5 @@
 import 'dart:ffi';
-import 'package:aplicativo_de_corrida/App_controller.dart';
+import '../controllers/ThemeController.dart';
 import 'package:flutter/material.dart';
 import 'Custom_widget.dart';
 
@@ -27,15 +27,6 @@ class HomePageState extends State<HomePage>{
               ),
               accountName: Text('Arthur felipe'),
               accountEmail: Text('Arthurfas123@gmail.com')
-            ),
-
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Inicio'),
-              subtitle: Text('Tela de inicio'),
-              onTap: (){
-                print('home');
-              },
             ),
 
             ListTile(

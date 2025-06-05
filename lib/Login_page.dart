@@ -83,14 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                           Expanded(
                             child: ElevatedButton(
                                 onPressed: () {
-                                  if(userName == 'arthur' && senha == '123')
-                                  {
-                                    Navigator.of(context).pushReplacementNamed('/home');
-                                  }
-                                  else
-                                  {
-                                    print('Login invalido');
-                                  }
+
                                 },
                                 child: Container(
                                     width: double.infinity,

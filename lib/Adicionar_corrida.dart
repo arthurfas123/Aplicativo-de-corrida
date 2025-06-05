@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AdicionarCorrida extends StatelessWidget {
-  const AdicionarCorrida({super.key});
+  String tempo = '';
+  String titulo = '';
+  String distancia = '';
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,10 @@ class AdicionarCorrida extends StatelessWidget {
                   InputDecoration(
                       labelText: 'Titulo',
                       border: OutlineInputBorder()
-                  )
+                  ),
+                  onChanged: (text){
+                    tempo = text;
+                  },
               ),
               Container(height: 8),
 
@@ -27,7 +32,10 @@ class AdicionarCorrida extends StatelessWidget {
                   InputDecoration(
                     labelText: 'Distancia',
                     border: OutlineInputBorder()
-                  )
+                  ),
+                  onChanged: (text){
+                    tempo = text;
+                  },
               ),
               Container(height: 8),
 
@@ -36,7 +44,10 @@ class AdicionarCorrida extends StatelessWidget {
                   InputDecoration(
                       labelText: 'Tempo',
                       border: OutlineInputBorder()
-                  )
+                  ),
+                  onChanged: (text){
+                    tempo = text;
+                  },
               ),
               Container(height: 8),
 
