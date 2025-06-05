@@ -1,0 +1,59 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class AdicionarCorrida extends StatelessWidget {
+  const AdicionarCorrida({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Scaffold(
+        appBar: AppBar(title: Text('Nova corrida'),),
+        body: Card(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextField(
+                  decoration:
+                  InputDecoration(
+                      labelText: 'Titulo',
+                      border: OutlineInputBorder()
+                  )
+              ),
+              Container(height: 8),
+
+              TextField(
+                  decoration:
+                  InputDecoration(
+                    labelText: 'Distancia',
+                    border: OutlineInputBorder()
+                  )
+              ),
+              Container(height: 8),
+
+              TextField(
+                  decoration:
+                  InputDecoration(
+                      labelText: 'Tempo',
+                      border: OutlineInputBorder()
+                  )
+              ),
+              Container(height: 8),
+
+              ElevatedButton(
+                onPressed: (){
+
+                },
+                child: Container(
+                  height: 40,
+                  width: 100,
+                  child: Center(child: Text('Adicionar')),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

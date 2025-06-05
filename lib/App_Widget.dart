@@ -1,3 +1,4 @@
+import 'package:aplicativo_de_corrida/Adicionar_corrida.dart';
 import 'package:flutter/material.dart';
 import 'App_controller.dart';
 import 'Home_page.dart';
@@ -9,21 +10,22 @@ class AppWidget extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-        animation: AppController.instance,
-        builder: (context, child){
-          return MaterialApp(
-              theme: ThemeData(
-                  primarySwatch: Colors.red,
-                  useMaterial3: false,
-                  brightness: AppController.instance.isDarkTheme
-                      ? Brightness.dark
-                      : Brightness.light
-              ),
-              routes: {
-                '/': (context) => LoginPage(),
-                '/home': (context) => HomePage()
-              }
-          );
-        });
+      animation: AppController.instance,
+      builder: (context, child){
+        return MaterialApp(
+            theme: ThemeData(
+                primarySwatch: Colors.red,
+                useMaterial3: false,
+                brightness: AppController.instance.isDarkTheme
+                    ? Brightness.dark
+                    : Brightness.light
+            ),
+            routes: {
+              '/': (context) => LoginPage(),
+              '/home': (context) => HomePage(),
+              '/adicionar_corrida': (context) => AdicionarCorrida()
+            }
+        );
+      });
   }
 }

@@ -1,4 +1,5 @@
 import 'dart:ffi';
+import 'package:aplicativo_de_corrida/App_controller.dart';
 import 'package:flutter/material.dart';
 import 'Custom_widget.dart';
 
@@ -12,7 +13,6 @@ class HomePage extends StatefulWidget{
 }
 
 class HomePageState extends State<HomePage>{
-  int cont = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +45,24 @@ class HomePageState extends State<HomePage>{
               onTap: (){
                 Navigator.of(context).pushReplacementNamed('/');
               },
-            )
+            ),
+
+            ListTile(
+              leading: Icon(Icons.shield_moon),
+              title: Text('Modo noturno'),
+              subtitle: Text('Mudar para modo noturno'),
+              onTap: (){
+                setState(() {
+                  AppController.instance.changeTheme();
+                });
+              },
+            ),
           ],
         ),
       ),
+
       appBar: AppBar(
-        title: Text('Contador de cliques'),
+        title: Text('Corridas'),
       ),
 
       body: Container(
@@ -59,8 +71,7 @@ class HomePageState extends State<HomePage>{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CustomSwitch(),
-            Text('Clicou: $cont')
+
           ],
         ),
       ),
@@ -68,9 +79,7 @@ class HomePageState extends State<HomePage>{
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed:(){
-            setState((){
-              cont++;
-            });
+            Navigator.of(context).pushNamed('/adicionar_corrida');
           }),
     );
   }
