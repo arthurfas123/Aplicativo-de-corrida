@@ -97,9 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                                   }
 
                                   if (UserController.instance.usuarioExiste(userName)) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text('Usuário já existe')),
-                                    );
+                                      print('ja existe');
                                   } else {
                                     await UserController.instance.cadastrarUsuario(userName, senha);
 
@@ -107,10 +105,6 @@ class _LoginPageState extends State<LoginPage> {
                                         .firstWhere((u) => u.nome == userName);
                                     UserController.instance.setUsuarioAtual(user);
                                     print('tentando cadastar');
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text('Usuário cadastrado com sucesso')),
-                                    );
-
                                     print('passando para home');
                                     Navigator.of(context).pushReplacementNamed('/home');
                                   }

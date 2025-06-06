@@ -21,9 +21,10 @@ class User {
     return User(
       nome: json['nome'],
       senha: json['senha'],
-      atividades: (json['atividades'] as List<dynamic>)
-          .map((a) => Atividade.fromJson(a))
-          .toList(),
+      atividades: (json['atividades'] as List<dynamic>?)
+          ?.map((a) => Atividade.fromJson(a))
+          .toList() ??
+          [],
     );
   }
 }
