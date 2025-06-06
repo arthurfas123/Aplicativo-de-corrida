@@ -1,85 +1,106 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../models/Atividade.dart';
 import '../controllers/UserController.dart';
+import '../models/Atividade.dart';
 
+class AdicionarCorrida extends StatefulWidget {
+  @override
+  _AdicionarCorridaState createState() => _AdicionarCorridaState();
+}
 
-class AdicionarCorrida extends StatelessWidget {
-  String tempo = '';
+class _AdicionarCorridaState extends State<AdicionarCorrida> {
   String titulo = '';
   String distancia = '';
+  String tempo = '';
   String descricao = '';
   String ritmo = '';
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Scaffold(
-        appBar: AppBar(title: Text('Nova corrida'),),
-        body: Card(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextField(
-                  decoration:
-                  InputDecoration(
-                      labelText: 'Titulo',
-                      border: OutlineInputBorder()
-                  ),
-                  onChanged: (text){
-                    titulo = text;
-                  },
+    return Scaffold(
+      appBar: AppBar(title: Text('Nova corrida')),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                  labelText: 'Título', border: OutlineInputBorder()),
+              onChanged: (text) {
+                titulo = text;
+              },
+            ),
+            SizedBox(height: 8),
+
+            TextField(
+              decoration: InputDecoration(
+                  labelText: 'Distância (km)', border: OutlineInputBorder()),
+              onChanged: (text) {
+                distancia = text;
+              },
+            ),
+            SizedBox(height: 8),
+
+            TextField(
+              decoration: InputDecoration(
+                  labelText: 'Tempo (min:seg)', border: OutlineInputBorder()),
+              onChanged: (text) {
+                tempo = text;
+              },
+            ),
+            SizedBox(height: 8),
+
+            TextField(
+              decoration: InputDecoration(
+                  labelText: 'Ritmo', border: OutlineInputBorder()),
+              onChanged: (text) {
+                ritmo = text;
+              },
+            ),
+            SizedBox(height: 8),
+
+            TextField(
+              decoration: InputDecoration(
+                  labelText: 'Descrição', border: OutlineInputBorder()),
+              onChanged: (text) {
+                descricao = text;
+              },
+            ),
+            SizedBox(height: 16),
+
+            ElevatedButton(
+              onPressed: () async {
+                final usuario = UserController.instance.usuarioAtual;
+
+                if (usuario == null) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Usuário não logado.')),
+                  );
+                  return;
+                }
+
+                final novaAtividade = Atividade(
+                  titulo: titulo,
+                  distancia_em_km: distancia,
+                  tempo_min_seg: tempo,
+                  ritmo: ritmo,
+                  descricao: descricao,
+                );
+
+                await UserController.instance.adicionarAtividadeParaUsuario(
+                  usuario.nome,
+                  novaAtividade,
+                );
+
+                Navigator.of(context).pop(); // Volta para a HomePage
+              },
+              child: Container(
+                height: 40,
+                width: 100,
+                alignment: Alignment.center,
+                child: Text('Adicionar'),
               ),
-              Container(height: 8),
-
-              TextField(
-                  decoration:
-                  InputDecoration(
-                    labelText: 'Distancia',
-                    border: OutlineInputBorder()
-                  ),
-                  onChanged: (text){
-                    distancia = text;
-                  },
-              ),
-              Container(height: 8),
-
-              TextField(
-                  decoration:
-                  InputDecoration(
-                      labelText: 'Tempo',
-                      border: OutlineInputBorder()
-                  ),
-                  onChanged: (text){
-                    tempo = text;
-                  },
-              ),
-              Container(height: 8),
-
-              TextField(
-                decoration:
-                InputDecoration(
-                    labelText: 'Descrição',
-                    border: OutlineInputBorder()
-                ),
-                onChanged: (text){
-                  descricao = text;
-                },
-              ),
-              Container(height: 8),
-
-              ElevatedButton(
-                onPressed: (){
-
-                },
-                child: Container(
-                  height: 40,
-                  width: 100,
-                  child: Center(child: Text('Adicionar')),
-                ),
-              )
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
