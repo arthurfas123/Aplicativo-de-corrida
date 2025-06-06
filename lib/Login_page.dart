@@ -73,10 +73,10 @@ class _LoginPageState extends State<LoginPage> {
                                     UserController.instance.setUsuarioAtual(user);
 
                                     Navigator.of(context).pushReplacementNamed('/home');
-                                  } else {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text('Login inválido')),
-                                    );
+                                  }
+                                  else
+                                  {
+                                      print('Login invalido');
                                   }
                                 },
                                 child: Container(
@@ -90,9 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                             child: ElevatedButton(
                                 onPressed: () async {
                                   if (userName.isEmpty || senha.isEmpty) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text('Preencha todos os campos')),
-                                    );
+                                      print('preencha todos os campos');
                                     return;
                                   }
 

@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../models/Atividade.dart';
+import '../controllers/UserController.dart';
+
 
 class AdicionarCorrida extends StatelessWidget {
   String tempo = '';
@@ -24,7 +27,7 @@ class AdicionarCorrida extends StatelessWidget {
                       border: OutlineInputBorder()
                   ),
                   onChanged: (text){
-                    tempo = text;
+                    titulo = text;
                   },
               ),
               Container(height: 8),
@@ -36,7 +39,7 @@ class AdicionarCorrida extends StatelessWidget {
                     border: OutlineInputBorder()
                   ),
                   onChanged: (text){
-                    tempo = text;
+                    distancia = text;
                   },
               ),
               Container(height: 8),

@@ -14,10 +14,9 @@ class HomePage extends StatefulWidget{
 }
 
 class HomePageState extends State<HomePage>{
-  final usuario = UserController.instance.usuarioAtual;
-
   @override
   Widget build(BuildContext context) {
+    final usuario = UserController.instance.usuarioAtual;
     if (usuario == null) {
       return Scaffold(
         appBar: AppBar(title: Text('Erro')),
@@ -65,15 +64,29 @@ class HomePageState extends State<HomePage>{
         title: Text('Corridas'),
       ),
 
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-
-          ],
-        ),
+      body: usuario.atividades.isEmpty
+          ? Center(child: Text('Nenhuma corrida cadastrada.'))
+          : ListView.builder(
+        itemCount: usuario?.atividades.length,
+        itemBuilder: (context, index) {
+          final atividade = usuario.atividades[index];
+          return Card(
+            margin: EdgeInsets.all(8),
+            child: ListTile(
+              title: Text(atividade.titulo),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Distância: ${atividade.distancia_em_km} km'),
+                  Text('Tempo: ${atividade.tempo_min_seg}'),
+                  Text('Ritmo: ${atividade.ritmo}'),
+                  if (atividade.descricao.isNotEmpty)
+                    Text('Descrição: ${atividade.descricao}'),
+                ],
+              ),
+            ),
+          );
+        },
       ),
 
       floatingActionButton: FloatingActionButton(
