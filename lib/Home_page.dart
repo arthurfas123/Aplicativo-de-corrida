@@ -2,6 +2,7 @@ import 'dart:ffi';
 import '../controllers/ThemeController.dart';
 import 'package:flutter/material.dart';
 import 'Custom_widget.dart';
+import 'controllers/UserController.dart';
 
 class HomePage extends StatefulWidget{
   const HomePage({super.key});
@@ -13,9 +14,17 @@ class HomePage extends StatefulWidget{
 }
 
 class HomePageState extends State<HomePage>{
+  final usuario = UserController.instance.usuarioAtual;
 
   @override
   Widget build(BuildContext context) {
+    if (usuario == null) {
+      return Scaffold(
+        appBar: AppBar(title: Text('Erro')),
+        body: Center(child: Text('Erro: usuário não encontrado')),
+      );
+    }
+
     return Scaffold(
       drawer: Drawer(
         child: Column(

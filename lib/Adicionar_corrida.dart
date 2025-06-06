@@ -5,6 +5,8 @@ class AdicionarCorrida extends StatelessWidget {
   String tempo = '';
   String titulo = '';
   String distancia = '';
+  String descricao = '';
+  String ritmo = '';
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +50,18 @@ class AdicionarCorrida extends StatelessWidget {
                   onChanged: (text){
                     tempo = text;
                   },
+              ),
+              Container(height: 8),
+
+              TextField(
+                decoration:
+                InputDecoration(
+                    labelText: 'Descrição',
+                    border: OutlineInputBorder()
+                ),
+                onChanged: (text){
+                  descricao = text;
+                },
               ),
               Container(height: 8),
 

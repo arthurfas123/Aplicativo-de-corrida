@@ -2,6 +2,8 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 
+import 'controllers/UserController.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -63,14 +65,18 @@ class _LoginPageState extends State<LoginPage> {
                         children: [
                           Expanded(
                             child: ElevatedButton(
-                                onPressed: () {
-                                  if(userName == 'arthur' && senha == '123')
-                                  {
+                                onPressed: () async {
+                                  final ok = UserController.instance.autenticar(userName, senha);
+                                  if (ok) {
+                                    final user = UserController.instance.usuarios
+                                        .firstWhere((u) => u.nome == userName);
+                                    UserController.instance.setUsuarioAtual(user);
+
                                     Navigator.of(context).pushReplacementNamed('/home');
-                                  }
-                                  else
-                                  {
-                                    print('Login invalido');
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text('Login inválido')),
+                                    );
                                   }
                                 },
                                 child: Container(
@@ -82,8 +88,32 @@ class _LoginPageState extends State<LoginPage> {
 
                           Expanded(
                             child: ElevatedButton(
-                                onPressed: () {
+                                onPressed: () async {
+                                  if (userName.isEmpty || senha.isEmpty) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text('Preencha todos os campos')),
+                                    );
+                                    return;
+                                  }
 
+                                  if (UserController.instance.usuarioExiste(userName)) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text('Usuário já existe')),
+                                    );
+                                  } else {
+                                    await UserController.instance.cadastrarUsuario(userName, senha);
+
+                                    final user = UserController.instance.usuarios
+                                        .firstWhere((u) => u.nome == userName);
+                                    UserController.instance.setUsuarioAtual(user);
+                                    print('tentando cadastar');
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text('Usuário cadastrado com sucesso')),
+                                    );
+
+                                    print('passando para home');
+                                    Navigator.of(context).pushReplacementNamed('/home');
+                                  }
                                 },
                                 child: Container(
                                     width: double.infinity,
