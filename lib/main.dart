@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'App_Widget.dart';
-import 'controllers/UserController.dart';
+import 'presentation/widgets/app.dart';
+import 'controllers/user_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -8,3 +8,4 @@ void main() async {
   await UserController.instance.carregarUsuarios();
   runApp(AppWidget());
 }
+//teste

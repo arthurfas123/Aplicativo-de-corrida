@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../controllers/ThemeController.dart';
+import '../../controllers/theme_controller.dart';
 
 class CustomSwitch extends StatelessWidget {
   const CustomSwitch({super.key});
