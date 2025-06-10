@@ -31,45 +31,37 @@ class HomePageState extends State<HomePage>{
               currentAccountPicture: ClipRRect(
                 borderRadius: BorderRadius.circular(40),
                 child: usuario.fotoPerfilUrl != null
-                    ? Image.file(
-                        File(usuario.fotoPerfilUrl!),
-                        fit: BoxFit.cover,
-                        width: 80,
-                        height: 80,
-                      )
+                    ? Image.file(File(usuario.fotoPerfilUrl!), fit: BoxFit.cover)
                     : Icon(Icons.person, size: 60, color: Colors.white),
               ),
               accountName: Text(usuario.nomeUsuario),
               accountEmail: null,
             ),
-
             ListTile(
               leading: Icon(Icons.person),
               title: Text('Perfil'),
               subtitle: Text('Ver e editar informações'),
-              onTap: () {
-                Navigator.of(context).pushNamed('/perfil');
-              },
+              onTap: () => Navigator.of(context).pushNamed('/perfil'),
             ),
-
+            ListTile(
+              leading: Icon(Icons.emoji_events),
+              title: Text('Medalhas'),
+              subtitle: Text('Veja suas conquistas'),
+              onTap: () => Navigator.of(context).pushNamed('/medalhas'),
+            ),
             ListTile(
               leading: Icon(Icons.home),
               title: Text('Logout'),
               subtitle: Text('Finalizar sessão'),
-              onTap: () {
-                Navigator.of(context).pushReplacementNamed('/');
-              },
+              onTap: () => Navigator.of(context).pushReplacementNamed('/'),
             ),
-
             ListTile(
               leading: Icon(Icons.shield_moon),
               title: Text('Modo noturno'),
               subtitle: Text('Mudar para modo noturno'),
-              onTap: () {
-                setState(() {
-                  AppController.instance.changeTheme();
-                });
-              },
+              onTap: () => setState(() {
+                AppController.instance.changeTheme();
+              }),
             ),
           ],
         ),

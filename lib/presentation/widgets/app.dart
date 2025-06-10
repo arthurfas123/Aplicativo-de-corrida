@@ -5,6 +5,7 @@ import '../pages/home_page.dart';
 import '../pages/login_page.dart';
 import '../pages/register_page.dart';
 import '../pages/profile_page.dart';
+import '../pages/medalhas_page.dart';
 
 class AppWidget extends StatelessWidget{
   const AppWidget({super.key});
@@ -25,6 +26,7 @@ class AppWidget extends StatelessWidget{
             routes: {
               '/': (context) => LoginPage(),
               '/registrar': (context) => RegisterPage(),
+              '/medalhas': (context) => const MedalhasPage(),
               '/home': (context) => HomePage(),
               '/adicionar_corrida': (context) => AdicionarCorrida(),
               '/perfil': (context) => ProfilePage(),
