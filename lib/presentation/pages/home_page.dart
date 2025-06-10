@@ -1,3 +1,4 @@
+import 'dart:io';
 import '../../controllers/theme_controller.dart';
 import 'package:flutter/material.dart';
 import '../../controllers/user_controller.dart';
@@ -29,17 +30,33 @@ class HomePageState extends State<HomePage>{
             UserAccountsDrawerHeader(
               currentAccountPicture: ClipRRect(
                 borderRadius: BorderRadius.circular(40),
-                child: null,
+                child: usuario.fotoPerfilUrl != null
+                    ? Image.file(
+                        File(usuario.fotoPerfilUrl!),
+                        fit: BoxFit.cover,
+                        width: 80,
+                        height: 80,
+                      )
+                    : Icon(Icons.person, size: 60, color: Colors.white),
               ),
               accountName: Text(usuario.nomeUsuario),
               accountEmail: null,
             ),
 
             ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Perfil'),
+              subtitle: Text('Ver e editar informações'),
+              onTap: () {
+                Navigator.of(context).pushNamed('/perfil');
+              },
+            ),
+
+            ListTile(
               leading: Icon(Icons.home),
               title: Text('Logout'),
               subtitle: Text('Finalizar sessão'),
-              onTap: (){
+              onTap: () {
                 Navigator.of(context).pushReplacementNamed('/');
               },
             ),
@@ -48,7 +65,7 @@ class HomePageState extends State<HomePage>{
               leading: Icon(Icons.shield_moon),
               title: Text('Modo noturno'),
               subtitle: Text('Mudar para modo noturno'),
-              onTap: (){
+              onTap: () {
                 setState(() {
                   AppController.instance.changeTheme();
                 });
@@ -57,6 +74,7 @@ class HomePageState extends State<HomePage>{
           ],
         ),
       ),
+
 
       appBar: AppBar(
         title: Text('Corridas'),
