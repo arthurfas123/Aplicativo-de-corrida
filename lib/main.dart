@@ -1,6 +1,6 @@
+import 'package:aplicativo_de_corrida/presentation/widgets/app.dart';
 import 'package:flutter/cupertino.dart';
-import 'presentation/widgets/App_Widget.dart';
-import 'presentation/controllers/UserController.dart';
+import 'controllers/User_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
