@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../controllers/theme_controller.dart';
 import '../pages/home_page.dart';
 import '../pages/login_page.dart';
+import '../pages/register_page.dart';
 
 class AppWidget extends StatelessWidget{
   const AppWidget({super.key});
@@ -22,6 +23,7 @@ class AppWidget extends StatelessWidget{
             ),
             routes: {
               '/': (context) => LoginPage(),
+              '/registrar': (context) => RegisterPage(),
               '/home': (context) => HomePage(),
               '/adicionar_corrida': (context) => AdicionarCorrida()
             }
