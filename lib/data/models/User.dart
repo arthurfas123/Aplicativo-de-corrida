@@ -1,4 +1,4 @@
-import '/models/Atividade.dart';
+import 'Atividade.dart';
 
 class User {
   String nome;

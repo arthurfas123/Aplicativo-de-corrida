@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../controllers/UserController.dart';
-import '../models/Atividade.dart';
+import '../../data/models/Atividade.dart';
 
 class AdicionarCorrida extends StatefulWidget {
   @override

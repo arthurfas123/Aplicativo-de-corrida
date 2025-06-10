@@ -1,8 +1,8 @@
-import 'package:aplicativo_de_corrida/Adicionar_corrida.dart';
+import 'package:aplicativo_de_corrida/presentation/widgets/Adicionar_corrida.dart';
 import 'package:flutter/material.dart';
 import '../controllers/ThemeController.dart';
-import 'homePage.dart';
-import 'loginPage.dart';
+import '../pages/homePage.dart';
+import '../pages/loginPage.dart';
 
 class AppWidget extends StatelessWidget{
   const AppWidget({super.key});

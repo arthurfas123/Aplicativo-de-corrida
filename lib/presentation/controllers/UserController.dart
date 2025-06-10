@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
-import '/models/User.dart';
-import '/models/Atividade.dart';
+import '../../data/models/User.dart';
+import '../../data/models/Atividade.dart';
 
 class UserController {
   static final UserController instance = UserController._();

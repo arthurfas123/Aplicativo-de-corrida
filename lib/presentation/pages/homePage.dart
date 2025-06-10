@@ -1,6 +1,6 @@
 import '../controllers/ThemeController.dart';
 import 'package:flutter/material.dart';
-import 'controllers/UserController.dart';
+import '../controllers/UserController.dart';
 
 class HomePage extends StatefulWidget{
   const HomePage({super.key});
