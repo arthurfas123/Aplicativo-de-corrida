@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../controllers/User_controller.dart';
+import '../../controllers/user_controller.dart';
 import '../../data/models/atividade.dart';
 
 class AdicionarCorrida extends StatefulWidget {
@@ -87,7 +87,7 @@ class _AdicionarCorridaState extends State<AdicionarCorrida> {
                 );
 
                 await UserController.instance.adicionarAtividadeParaUsuario(
-                  usuario.nome,
+                  usuario.nomeUsuario,
                   novaAtividade,
                 );
 

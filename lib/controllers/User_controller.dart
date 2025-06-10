@@ -32,34 +32,65 @@ class UserController {
     print("Usuários salvos em: ${file.path}");
   }
 
-  Future<void> cadastrarUsuario(String nome, String senha) async {
-    _usuarios.add(User(nome: nome, senha: senha));
+  Future<void> cadastrarUsuario({
+    required String nomeUsuario,
+    required String senha,
+    required String nomeCompleto,
+    required String email,
+    String? telefone,
+    DateTime? dataNascimento,
+    String? genero,
+    String? fotoPerfilUrl,
+  }) async {
+    if (usuarioExiste(nomeUsuario)) {
+      throw Exception('Usuário já existe');
+    }
+
+    final novoUsuario = User(
+      nomeUsuario: nomeUsuario,
+      senha: senha,
+      nomeCompleto: nomeCompleto,
+      email: email,
+      telefone: telefone,
+      dataNascimento: dataNascimento,
+      genero: genero,
+      fotoPerfilUrl: fotoPerfilUrl,
+    );
+
+    _usuarios.add(novoUsuario);
     await salvarUsuarios();
   }
 
-  Future<void> adicionarAtividadeParaUsuario(String nome, Atividade atividade) async {
-    final user = _usuarios.firstWhere((u) => u.nome == nome, orElse: () => throw Exception("Usuário não encontrado"));
+  Future<void> adicionarAtividadeParaUsuario(String nomeUsuario, Atividade atividade) async {
+    final user = _usuarios.firstWhere(
+      (u) => u.nomeUsuario == nomeUsuario,
+      orElse: () => throw Exception("Usuário não encontrado"),
+    );
     user.atividades.add(atividade);
     await salvarUsuarios();
   }
 
-  Future<void> removerAtividadeParaUsuario(String nome, Atividade atividade) async {
-    final user = _usuarios.firstWhere((u) => u.nome == nome, orElse: () => throw Exception("Usuário não encontrado"));
+  Future<void> removerAtividadeParaUsuario(String nomeUsuario, Atividade atividade) async {
+    final user = _usuarios.firstWhere(
+      (u) => u.nomeUsuario == nomeUsuario,
+      orElse: () => throw Exception("Usuário não encontrado"),
+    );
     user.atividades.remove(atividade);
     await salvarUsuarios();
   }
 
-  bool autenticar(String nome, String senha) {
-    return _usuarios.any((u) => u.nome == nome && u.senha == senha);
+  bool autenticar(String nomeUsuario, String senha) {
+    return _usuarios.any((u) => u.nomeUsuario == nomeUsuario && u.senha == senha);
   }
 
-  bool usuarioExiste(String nome) {
-    return _usuarios.any((u) => u.nome == nome);
+  bool usuarioExiste(String nomeUsuario) {
+    return _usuarios.any((u) => u.nomeUsuario == nomeUsuario);
   }
 
   User? _usuarioAtual;
 
   User? get usuarioAtual => _usuarioAtual;
+
   void setUsuarioAtual(User user) {
     _usuarioAtual = user;
   }
