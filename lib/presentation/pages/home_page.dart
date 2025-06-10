@@ -50,10 +50,10 @@ class HomePageState extends State<HomePage>{
               onTap: () => Navigator.of(context).pushNamed('/medalhas'),
             ),
             ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Logout'),
-              subtitle: Text('Finalizar sessão'),
-              onTap: () => Navigator.of(context).pushReplacementNamed('/'),
+              leading: Icon(Icons.show_chart),
+              title: Text('Estatisticas'),
+              subtitle: Text('Estatisticas do ususario'),
+              onTap: () => Navigator.of(context).pushNamed('/statistic'),
             ),
             ListTile(
               leading: Icon(Icons.shield_moon),
@@ -62,6 +62,12 @@ class HomePageState extends State<HomePage>{
               onTap: () => setState(() {
                 AppController.instance.changeTheme();
               }),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Logout'),
+              subtitle: Text('Finalizar sessão'),
+              onTap: () => Navigator.of(context).pushReplacementNamed('/'),
             ),
           ],
         ),
@@ -110,6 +116,7 @@ class HomePageState extends State<HomePage>{
                   Text('Distância: ${atividade.distancia_em_km} km'),
                   Text('Tempo: ${atividade.tempo_min_seg}'),
                   Text('Ritmo: ${atividade.ritmo}'),
+                  Text('Data: ${'${atividade.data.year}/${atividade.data.month.toString().padLeft(2, '0')}/${atividade.data.day.toString().padLeft(2, '0')}'}'),
                   if (atividade.descricao.isNotEmpty)
                     Text('Descrição: ${atividade.descricao}'),
                 ],

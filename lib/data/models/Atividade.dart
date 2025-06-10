@@ -4,6 +4,7 @@ class Atividade {
   String tempo_min_seg;
   String ritmo;
   String descricao;
+  DateTime data;
 
   Atividade({
     required this.titulo,
@@ -11,6 +12,7 @@ class Atividade {
     required this.tempo_min_seg,
     required this.ritmo,
     this.descricao = '',
+    required this.data,
   });
 
   Map<String, dynamic> toJson() => {
@@ -19,6 +21,7 @@ class Atividade {
     'tempo_min_seg': tempo_min_seg,
     'ritmo': ritmo,
     'descricao': descricao,
+    'data': data.toIso8601String(),
   };
 
   factory Atividade.fromJson(Map<String, dynamic> json) {
@@ -27,7 +30,8 @@ class Atividade {
       distancia_em_km: json['distancia_em_km'],
       tempo_min_seg: json['tempo_min_seg'],
       ritmo: json['ritmo'],
-      descricao: json['descricao'],
+      descricao: json['descricao'] ?? '',
+      data: DateTime.parse(json['data']),
     );
   }
 }

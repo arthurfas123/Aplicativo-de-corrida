@@ -1,4 +1,4 @@
-import 'package:aplicativo_de_corrida/presentation/widgets/add_run.dart';
+import 'package:aplicativo_de_corrida/controllers/run_controller.dart';
 import 'package:flutter/material.dart';
 import '../../controllers/theme_controller.dart';
 import '../pages/home_page.dart';
@@ -6,6 +6,7 @@ import '../pages/login_page.dart';
 import '../pages/register_page.dart';
 import '../pages/profile_page.dart';
 import '../pages/medalhas_page.dart';
+import '../pages/statistic_page.dart';
 
 class AppWidget extends StatelessWidget{
   const AppWidget({super.key});
@@ -30,6 +31,7 @@ class AppWidget extends StatelessWidget{
               '/home': (context) => HomePage(),
               '/adicionar_corrida': (context) => AdicionarCorrida(),
               '/perfil': (context) => ProfilePage(),
+              '/statistic': (context) => StatisticPage()
             }
         );
       });
