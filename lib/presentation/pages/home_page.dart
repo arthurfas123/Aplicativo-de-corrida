@@ -1,6 +1,6 @@
 import '../../controllers/theme_controller.dart';
 import 'package:flutter/material.dart';
-import '../../controllers/User_controller.dart';
+import '../../controllers/user_controller.dart';
 
 class HomePage extends StatefulWidget{
   const HomePage({super.key});
@@ -31,7 +31,7 @@ class HomePageState extends State<HomePage>{
                 borderRadius: BorderRadius.circular(40),
                 child: null,
               ),
-              accountName: Text(usuario.nome),
+              accountName: Text(usuario.nomeUsuario),
               accountEmail: null,
             ),
 
@@ -79,7 +79,7 @@ class HomePageState extends State<HomePage>{
                     onSelected: (value) {
                       if (value == 'remover') {
                         setState(() {
-                          UserController.instance.removerAtividadeParaUsuario(usuario.nome, atividade);
+                          UserController.instance.removerAtividadeParaUsuario(usuario.nomeUsuario, atividade);
                           setState(() {
                           });
                         });
