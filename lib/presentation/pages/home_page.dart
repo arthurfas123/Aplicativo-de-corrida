@@ -29,10 +29,10 @@ class HomePageState extends State<HomePage>{
             UserAccountsDrawerHeader(
               currentAccountPicture: ClipRRect(
                 borderRadius: BorderRadius.circular(40),
-                child: Image.network('https://ichef.bbci.co.uk/ace/ws/660/amz/worldservice/live/assets/images/2015/09/26/150926165742__85730600_monkey2.jpg.webp'),
+                child: null,
               ),
-              accountName: Text('Arthur felipe'),
-              accountEmail: Text('Arthurfas123@gmail.com')
+              accountName: Text(usuario.nome),
+              accountEmail: null,
             ),
 
             ListTile(
@@ -71,7 +71,29 @@ class HomePageState extends State<HomePage>{
           return Card(
             margin: EdgeInsets.all(8),
             child: ListTile(
-              title: Text(atividade.titulo),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(child: Text(atividade.titulo)),
+                  PopupMenuButton<String>(
+                    onSelected: (value) {
+                      if (value == 'remover') {
+                        setState(() {
+                          UserController.instance.removerAtividadeParaUsuario(usuario.nome, atividade);
+                          setState(() {
+                          });
+                        });
+                      }
+                    },
+                    itemBuilder: (context) => [
+                      PopupMenuItem(
+                        value: 'remover',
+                        child: Text('Remover'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -88,10 +110,13 @@ class HomePageState extends State<HomePage>{
       ),
 
       floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed:(){
-            Navigator.of(context).pushNamed('/adicionar_corrida');
-          }),
+        child: Icon(Icons.add),
+        onPressed: () async
+        {
+          await Navigator.of(context).pushNamed('/adicionar_corrida');
+          setState(() {});
+        }
+      )
     );
   }
 }
