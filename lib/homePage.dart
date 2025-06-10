@@ -65,7 +65,7 @@ class HomePageState extends State<HomePage>{
       body: usuario.atividades.isEmpty
           ? Center(child: Text('Nenhuma corrida cadastrada.'))
           : ListView.builder(
-        itemCount: usuario?.atividades.length,
+        itemCount: usuario.atividades.length,
         itemBuilder: (context, index) {
           final atividade = usuario.atividades[index];
           return Card(
